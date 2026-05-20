@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Botello's Barbershop – San Antonio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #F5F0E8;
+    --ink: #1A1410;
+    --gold: #B8922A;
+    --gold-light: #D4A843;
+    --rust: #8B3A1E;
+    --warm-gray: #8A8070;
+    --section-pad: clamp(4rem, 8vw, 7rem);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--ink);
+    color: var(--cream);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.25rem 4vw;
+    background: rgba(26,20,16,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(184,146,42,0.2);
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: var(--cream);
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.75;
+    transition: opacity 0.2s, color 0.2s;
+  }
+  .nav-links a:hover { opacity: 1; color: var(--gold-light); }
+  .nav-book {
+    background: var(--gold);
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.6rem 1.4rem;
+    transition: background 0.2s;
+  }
+  .nav-book:hover { background: var(--gold-light); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8rem 4vw 6rem 6vw;
+    position: relative;
+    z-index: 2;
+  }
+  .hero-eyebrow {
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 2rem;
+    height: 1px;
+    background: var(--gold);
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3.5rem, 7vw, 6.5rem);
+    font-weight: 900;
+    line-height: 0.9;
+    color: var(--cream);
+    margin-bottom: 1.5rem;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+  .hero-subtitle {
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.7;
+    color: rgba(245,240,232,0.65);
+    max-width: 30ch;
+    margin-bottom: 3rem;
+  }
+  .hero-cta-row { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--gold);
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 1rem 2.2rem;
+    display: inline-block;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+  .btn-secondary {
+    color: var(--cream);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    opacity: 0.65;
+    border-bottom: 1px solid rgba(245,240,232,0.3);
+    padding-bottom: 2px;
+    transition: opacity 0.2s;
+  }
+  .btn-secondary:hover { opacity: 1; }
+  .hero-stats {
+    margin-top: 4rem;
+    display: flex;
+    gap: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(184,146,42,0.2);
+  }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--gold);
+    display: block;
+  }
+  .stat-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--warm-gray);
+    display: block;
+    margin-top: 0.25rem;
+  }
+  .hero-right {
+    position: relative;
+    background: var(--rust);
+    overflow: hidden;
+  }
+  .hero-right::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url('https://d2zdpiztbgorvt.cloudfront.net/region1/us/1365850/biz_photo/4f01d4553a3e4e989c8961388aa1c8-botellos-barbershop-biz-photo-6c64ff6a08f74f83a057d5b270a4fe-booksy.jpeg') center/cover no-repeat;
+    opacity: 0.55;
+  }
+  .hero-right::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to right, var(--ink) 0%, transparent 30%);
+  }
+  .hero-badge {
+    position: absolute;
+    bottom: 3rem; right: 3rem;
+    z-index: 3;
+    background: var(--gold);
+    color: var(--ink);
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    animation: spin-slow 20s linear infinite;
+  }
+  .hero-badge-inner {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+  }
+  .hero-badge svg {
+    width: 100%; height: 100%;
+    position: absolute; inset: 0;
+  }
+  .badge-text {
+    font-size: 1.4rem;
+    font-weight: 700;
+    line-height: 1;
+    font-family: 'Playfair Display', serif;
+  }
+  .badge-sub { font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 2px; }
+  @keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+  /* ── MARQUEE ── */
+  .marquee-wrap {
+    background: var(--gold);
+    overflow: hidden;
+    padding: 0.9rem 0;
+  }
+  .marquee-track {
+    display: flex;
+    gap: 3rem;
+    white-space: nowrap;
+    animation: marquee 18s linear infinite;
+  }
+  .marquee-item {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.15em;
+    color: var(--ink);
+    display: flex; align-items: center; gap: 1.5rem;
+  }
+  .marquee-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--ink); opacity: 0.4; }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* ── SERVICES ── */
+  .services {
+    padding: var(--section-pad) 6vw;
+    background: var(--cream);
+    color: var(--ink);
+  }
+  .section-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 3.5rem;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .section-eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 900;
+    line-height: 1.05;
+    color: var(--ink);
+  }
+  .section-title em { font-style: italic; color: var(--rust); }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1px;
+    background: rgba(26,20,16,0.1);
+    border: 1px solid rgba(26,20,16,0.1);
+  }
+  .service-card {
+    background: var(--cream);
+    padding: 2.5rem 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+    cursor: default;
+  }
+  .service-card:hover { background: var(--ink); }
+  .service-card:hover .service-name { color: var(--cream); }
+  .service-card:hover .service-price { color: var(--gold); }
+  .service-card:hover .service-desc { color: rgba(245,240,232,0.55); }
+  .service-card:hover .service-num { color: rgba(245,240,232,0.07); }
+  .service-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 5rem;
+    font-weight: 900;
+    color: rgba(26,20,16,0.06);
+    line-height: 1;
+    position: absolute;
+    top: 1rem; right: 1.5rem;
+    transition: color 0.3s;
+  }
+  .service-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+    transition: color 0.3s;
+  }
+  .service-price {
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: var(--rust);
+    margin-bottom: 0.75rem;
+    transition: color 0.3s;
+  }
+  .service-desc {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--warm-gray);
+    transition: color 0.3s;
+  }
+
+  /* ── ABOUT ── */
+  .about {
+    padding: var(--section-pad) 6vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6vw;
+    align-items: center;
+    background: var(--ink);
+  }
+  .about-visual {
+    position: relative;
+    aspect-ratio: 4/5;
+  }
+  .about-img-main {
+    width: 80%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    position: absolute;
+    top: 0; right: 0;
+    background: url('https://d2zdpiztbgorvt.cloudfront.net/region1/us/1365850/biz_photo/4f01d4553a3e4e989c8961388aa1c8-botellos-barbershop-biz-photo-6c64ff6a08f74f83a057d5b270a4fe-booksy.jpeg') center/cover;
+    filter: grayscale(20%);
+  }
+  .about-accent-box {
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 55%;
+    aspect-ratio: 1;
+    background: var(--gold);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    padding: 1.5rem;
+  }
+  .about-accent-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--ink);
+    line-height: 1;
+  }
+  .about-accent-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink);
+    opacity: 0.7;
+    margin-top: 0.5rem;
+  }
+  .about-text .section-eyebrow { color: var(--gold-light); }
+  .about-text .section-title { color: var(--cream); }
+  .about-text .section-title em { color: var(--gold); }
+  .about-body {
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.8;
+    color: rgba(245,240,232,0.65);
+    margin-top: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .about-address {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.5rem;
+    border: 1px solid rgba(184,146,42,0.25);
+    margin-top: 2rem;
+  }
+  .about-address-icon { color: var(--gold); font-size: 1.2rem; margin-top: 2px; flex-shrink: 0; }
+  .about-address-text { font-size: 0.85rem; line-height: 1.6; color: rgba(245,240,232,0.7); }
+  .about-address-text strong { color: var(--cream); display: block; margin-bottom: 0.2rem; }
+
+  /* ── REVIEWS ── */
+  .reviews {
+    padding: var(--section-pad) 6vw;
+    background: #120E0A;
+  }
+  .reviews .section-title { color: var(--cream); }
+  .reviews .section-title em { color: var(--gold); }
+  .stars { color: var(--gold); font-size: 1rem; letter-spacing: 0.1em; margin-bottom: 0.5rem; }
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .review-card {
+    background: rgba(245,240,232,0.04);
+    border: 1px solid rgba(184,146,42,0.15);
+    padding: 2rem;
+    position: relative;
+  }
+  .review-card::before {
+    content: '"';
+    font-family: 'Playfair Display', serif;
+    font-size: 6rem;
+    color: var(--gold);
+    opacity: 0.12;
+    position: absolute;
+    top: -1rem; left: 1.5rem;
+    line-height: 1;
+  }
+  .review-text {
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: rgba(245,240,232,0.75);
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 1;
+  }
+  .review-author {
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+  }
+  .reviews-cta {
+    text-align: center;
+    margin-top: 3rem;
+    padding-top: 3rem;
+    border-top: 1px solid rgba(184,146,42,0.15);
+  }
+  .overall-rating {
+    font-family: 'Playfair Display', serif;
+    font-size: 5rem;
+    font-weight: 900;
+    color: var(--gold);
+    line-height: 1;
+    display: block;
+  }
+  .rating-label { font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--warm-gray); margin-top: 0.5rem; }
+
+  /* ── BOOKING CTA ── */
+  .booking-cta {
+    padding: var(--section-pad) 6vw;
+    background: var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+  .booking-cta-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 900;
+    color: var(--ink);
+    line-height: 1.1;
+  }
+  .booking-cta-title em { font-style: italic; }
+  .btn-dark {
+    background: var(--ink);
+    color: var(--cream);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 1.1rem 2.5rem;
+    display: inline-block;
+    white-space: nowrap;
+    transition: background 0.2s, transform 0.15s;
+    flex-shrink: 0;
+  }
+  .btn-dark:hover { background: var(--rust); transform: translateY(-1px); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    border-top: 1px solid rgba(184,146,42,0.15);
+    padding: 3rem 6vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+  }
+  .footer-text { font-size: 0.8rem; color: var(--warm-gray); }
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a {
+    font-size: 0.78rem;
+    color: var(--warm-gray);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--gold-light); }
+
+  /* ── SCROLL ANIMATIONS ── */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(2rem);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { min-height: 50vw; }
+    .hero-right::after { background: linear-gradient(to bottom, var(--ink) 0%, transparent 40%); }
+    .about { grid-template-columns: 1fr; }
+    .about-visual { aspect-ratio: 16/9; max-height: 60vw; }
+    .nav-links { display: none; }
+    .hero-badge { width: 90px; height: 90px; bottom: 1.5rem; right: 1.5rem; }
+    .booking-cta { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Botello's</a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+  </ul>
+  <a href="https://booksy.com/en-us/1365850_botellos-barbershop_barber-shop_134789_san-antonio" target="_blank" class="nav-book">Book Now</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow">San Antonio, TX</p>
+    <h1 class="hero-title">Botello's<br><em>Barber-<br>shop</em></h1>
+    <p class="hero-subtitle">Precision cuts, classic styles, and a community worth belonging to — right on McCullough Ave.</p>
+    <div class="hero-cta-row">
+      <a href="https://booksy.com/en-us/1365850_botellos-barbershop_barber-shop_134789_san-antonio" target="_blank" class="btn-primary">Book an Appointment</a>
+      <a href="#services" class="btn-secondary">See Services</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <span class="stat-num">5.0</span>
+        <span class="stat-label">★ Rating</span>
+      </div>
+      <div>
+        <span class="stat-num">371</span>
+        <span class="stat-label">Reviews</span>
+      </div>
+      <div>
+        <span class="stat-num">612</span>
+        <span class="stat-label">McCullough Ave</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-badge">
+      <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+        <path id="circle-text-path" d="M 60,60 m -44,0 a 44,44 0 1,1 88,0 a 44,44 0 1,1 -88,0" fill="none"/>
+        <text font-family="DM Sans, sans-serif" font-size="11" fill="#1A1410" font-weight="500" letter-spacing="3">
+          <textPath href="#circle-text-path">⭑ TOP RATED IN SAN ANTONIO ⭑ BOOKSY ⭑ </textPath>
+        </text>
+      </svg>
+      <div class="hero-badge-inner">
+        <span class="badge-text">5.0</span>
+        <span class="badge-sub">Stars</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap" aria-hidden="true">
+  <div class="marquee-track">
+    <!-- repeated twice for seamless loop -->
+    <span class="marquee-item">Haircuts<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Beard Trims<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Fades<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Lineups<span class="marquee-dot"></span></span>
+    <span class="marquee-item">San Antonio's Best<span class="marquee-dot"></span></span>
+    <span class="marquee-item">5.0 Stars<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Walk-ins Welcome<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Haircuts<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Beard Trims<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Fades<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Lineups<span class="marquee-dot"></span></span>
+    <span class="marquee-item">San Antonio's Best<span class="marquee-dot"></span></span>
+    <span class="marquee-item">5.0 Stars<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Walk-ins Welcome<span class="marquee-dot"></span></span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="section-header fade-up">
+    <div>
+      <p class="section-eyebrow">What We Offer</p>
+      <h2 class="section-title">Our <em>Services</em></h2>
+    </div>
+    <a href="https://booksy.com/en-us/1365850_botellos-barbershop_barber-shop_134789_san-antonio" target="_blank" class="btn-primary">Book on Booksy</a>
+  </div>
+  <div class="services-grid fade-up">
+    <div class="service-card">
+      <span class="service-num">01</span>
+      <div class="service-name">Haircut</div>
+      <div class="service-price">Starting at $25</div>
+      <div class="service-desc">Classic and modern cuts tailored to your style. Scissor or clipper — your call.</div>
+    </div>
+    <div class="service-card">
+      <span class="service-num">02</span>
+      <div class="service-name">Fade</div>
+      <div class="service-price">Starting at $25</div>
+      <div class="service-desc">Low, mid, or high — clean transitions and sharp lines, every time.</div>
+    </div>
+    <div class="service-card">
+      <span class="service-num">03</span>
+      <div class="service-name">Beard Trim</div>
+      <div class="service-price">Starting at $15</div>
+      <div class="service-desc">Shape, edge, and clean up your beard for a polished, defined look.</div>
+    </div>
+    <div class="service-card">
+      <span class="service-num">04</span>
+      <div class="service-name">Lineup</div>
+      <div class="service-price">Starting at $15</div>
+      <div class="service-desc">Crisp edges, hairline shaping, and a razor-clean finish.</div>
+    </div>
+    <div class="service-card">
+      <span class="service-num">05</span>
+      <div class="service-name">Cut + Beard</div>
+      <div class="service-price">Combo Deal</div>
+      <div class="service-desc">Full haircut paired with a beard trim — the complete refresh.</div>
+    </div>
+    <div class="service-card">
+      <span class="service-num">06</span>
+      <div class="service-name">Kids Cut</div>
+      <div class="service-price">Starting at $20</div>
+      <div class="service-desc">Patient, friendly cuts for the little ones. Family first, always.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-visual fade-up">
+    <div class="about-img-main"></div>
+    <div class="about-accent-box">
+      <div class="about-accent-num">★ 5.0</div>
+      <div class="about-accent-label">Rated on Booksy</div>
+    </div>
+  </div>
+  <div class="about-text fade-up">
+    <p class="section-eyebrow">Our Story</p>
+    <h2 class="section-title">More Than <em>Just a Cut</em></h2>
+    <p class="about-body">
+      Botello's Barbershop is a cornerstone of the San Antonio community. We believe a great haircut is more than technique — it's the experience, the conversation, and the confidence you carry when you walk out the door. Our barbers bring skill, care, and respect to every client that sits in the chair.
+    </p>
+    <p class="about-body">
+      Whether you're a regular or stepping in for the first time, you're family here. Come as you are, leave looking your best.
+    </p>
+    <div class="about-address">
+      <div class="about-address-icon">📍</div>
+      <div class="about-address-text">
+        <strong>Botello's Barbershop</strong>
+        612 McCullough Ave, San Antonio, TX 78215<br>
+        Book online via Booksy — open 24/7 for scheduling
+      </div>
+    </div>
+    <div style="margin-top: 2rem;">
+      <a href="https://booksy.com/en-us/1365850_botellos-barbershop_barber-shop_134789_san-antonio" target="_blank" class="btn-primary">Reserve Your Spot</a>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews" id="reviews">
+  <div class="section-header fade-up">
+    <div>
+      <p class="section-eyebrow">What Clients Say</p>
+      <h2 class="section-title">The <em>Reviews</em><br>Speak for Themselves</h2>
+    </div>
+    <div style="text-align:right">
+      <span class="overall-rating">5.0</span>
+      <p class="rating-label">371 reviews on Booksy</p>
+    </div>
+  </div>
+  <div class="reviews-grid fade-up">
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">Best barbershop in San Antonio, hands down. I've been coming here for years and the consistency is unmatched. My barber knows exactly what I want every time.</p>
+      <div class="review-author">— Loyal Customer</div>
+    </div>
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">Clean shop, great vibes, and an amazing fade. Worth every penny. I drove across town and I'll keep driving across town — it's that good.</p>
+      <div class="review-author">— Booksy Review</div>
+    </div>
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">Brought my son in for his first real barbershop experience. They were so patient and kind with him. We'll definitely be back — now it's our spot.</p>
+      <div class="review-author">— Happy Dad</div>
+    </div>
+  </div>
+  <div class="reviews-cta fade-up">
+    <a href="https://booksy.com/en-us/1365850_botellos-barbershop_barber-shop_134789_san-antonio" target="_blank" class="btn-primary">Read All 371 Reviews</a>
+  </div>
+</section>
+
+<!-- BOOKING CTA -->
+<section class="booking-cta">
+  <h2 class="booking-cta-title">Ready for your<br><em>best cut yet?</em></h2>
+  <a href="https://booksy.com/en-us/1365850_botellos-barbershop_barber-shop_134789_san-antonio" target="_blank" class="btn-dark">Book on Booksy →</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Botello's Barbershop</div>
+  <p class="footer-text">612 McCullough Ave · San Antonio, TX 78215</p>
+  <div class="footer-links">
+    <a href="https://booksy.com/en-us/1365850_botellos-barbershop_barber-shop_134789_san-antonio" target="_blank">Book Now</a>
+    <a href="#services">Services</a>
+    <a href="#reviews">Reviews</a>
+  </div>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
