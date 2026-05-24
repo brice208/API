@@ -310,25 +310,18 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1px;
-    background: rgba(26,20,16,0.08);
-    border: 1px solid rgba(26,20,16,0.08);
-  }
-  .service-card-body {
-    padding: 1.25rem 1.25rem 1.5rem;
-    background: var(--cream);
-    transition: background 0.3s;
-    height: 100%;
+    background: rgba(26,20,16,0.1);
+    border: 1px solid rgba(26,20,16,0.1);
   }
   .service-card {
-    background: var(--cream);
+    background: var(--ink);
     padding: 0;
     position: relative;
     overflow: hidden;
     transition: box-shadow 0.3s;
     cursor: pointer;
     text-decoration: none;
-    display: flex;
-    flex-direction: column;
+    display: block;
   }
   .service-card-img-wrap {
     width: 100%;
@@ -340,7 +333,6 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: top center;
     display: block;
     transition: transform 0.45s ease, filter 0.3s;
     filter: grayscale(20%) brightness(0.9);
@@ -349,8 +341,10 @@
     transform: scale(1.07);
     filter: grayscale(0%) brightness(1);
   }
-  .service-card-body-placeholder {
-    display: none;
+  .service-card-body {
+    padding: 1.25rem 1.25rem 1.5rem;
+    background: var(--cream);
+    transition: background 0.3s;
   }
   .service-card:hover .service-card-body { background: var(--ink); }
   .service-card:hover .service-name { color: var(--cream); }
@@ -678,7 +672,7 @@
   </div>
   <div class="services-grid fade-up">
     <a class="service-card" href="https://booksy.com/en-us/1365850_botellos-barbershop_barber-shop_134789_san-antonio" target="_blank">
-      <div class="service-card-img-wrap"><img src="https://d2zdpiztbgorvt.cloudfront.net/region1/us/677156/service_photos/95b9fb28a6f549a28fd38bf17da451ad.jpeg" alt="Haircut" loading="lazy"></div>
+      <div class="service-card-img-wrap"><img src="https://d2zdpiztbgorvt.cloudfront.net/region1/us/482291/inspiration/62a5db5ba52f4a10930a54ba3072f3-eric-botellos-barbershop-inspiration-5e5de472d5d441e18eed7ad81c03d8-booksy.jpeg" alt="Haircut" loading="lazy"></div>
       <div class="service-card-body">
         <span class="service-num">Haircut</span>
         <div class="service-name">Classic Cut</div>
@@ -687,7 +681,7 @@
       </div>
     </a>
     <a class="service-card" href="https://booksy.com/en-us/1365850_botellos-barbershop_barber-shop_134789_san-antonio" target="_blank">
-      <div class="service-card-img-wrap"><img src="https://d2zdpiztbgorvt.cloudfront.net/region1/us/677156/service_photos/b2c643de7d9942daa561f57401d9059a.jpeg" alt="Fade" loading="lazy"></div>
+      <div class="service-card-img-wrap"><img src="https://d2zdpiztbgorvt.cloudfront.net/region1/us/677156/biz_photo/31a71f24ea7c43b2abd41df00280e4-ruben-botellosbarbershop-biz-photo-58bb8bd7cda64af290dea89b6f2d41-booksy.jpeg" alt="Fade" loading="lazy"></div>
       <div class="service-card-body">
         <span class="service-num">Fade</span>
         <div class="service-name">Skin Fade</div>
@@ -696,7 +690,7 @@
       </div>
     </a>
     <a class="service-card" href="https://booksy.com/en-us/1365850_botellos-barbershop_barber-shop_134789_san-antonio" target="_blank">
-      <div class="service-card-img-wrap"><img src="https://d2zdpiztbgorvt.cloudfront.net/region1/us/677156/service_photos/cf3769c92f34476188677aaf608483b5.jpeg" alt="Beard Trim" loading="lazy"></div>
+      <div class="service-card-img-wrap"><img src="https://d2zdpiztbgorvt.cloudfront.net/region1/us/677156/biz_photo/72e75db3865144059903de937e0d41-ruben-botellosbarbershop-biz-photo-1e2ab3e3840b47ed83a7b857dd44a9-booksy.jpeg" alt="Beard Trim" loading="lazy"></div>
       <div class="service-card-body">
         <span class="service-num">Beard</span>
         <div class="service-name">Beard Trim</div>
@@ -705,7 +699,7 @@
       </div>
     </a>
     <a class="service-card" href="https://booksy.com/en-us/1365850_botellos-barbershop_barber-shop_134789_san-antonio" target="_blank">
-      <div class="service-card-img-wrap"><img src="https://d2zdpiztbgorvt.cloudfront.net/region1/us/677156/service_photos/26b8eb5b822f46a5a3afde8bd9d1bac7.jpeg" alt="Lineup" loading="lazy"></div>
+      <div class="service-card-img-wrap"><img src="https://d2zdpiztbgorvt.cloudfront.net/region1/us/677156/biz_photo/e91f997226c846749a4e95b75a5bde-ruben-botellosbarbershop-biz-photo-c6feaa2e8fb445d495d3bbf7ff9b4d-booksy.jpeg" alt="Lineup" loading="lazy"></div>
       <div class="service-card-body">
         <span class="service-num">Lineup</span>
         <div class="service-name">Edge Lineup</div>
@@ -714,7 +708,7 @@
       </div>
     </a>
     <a class="service-card" href="https://booksy.com/en-us/1365850_botellos-barbershop_barber-shop_134789_san-antonio" target="_blank">
-      <div class="service-card-img-wrap"><img src="https://d2zdpiztbgorvt.cloudfront.net/region1/us/677156/service_photos/1a312f9afa7242d8b28525d92eab5522.jpeg" alt="Cut and Beard" loading="lazy"></div>
+      <div class="service-card-img-wrap"><img src="https://d2zdpiztbgorvt.cloudfront.net/region1/us/482291/inspiration/247161c84e1941bca3892eae973f5b-botellos-barbershop-inspiration-610a2467739f43e3af9730fef89d5e-booksy.jpeg" alt="Cut and Beard" loading="lazy"></div>
       <div class="service-card-body">
         <span class="service-num">Combo</span>
         <div class="service-name">Cut + Beard</div>
@@ -723,7 +717,7 @@
       </div>
     </a>
     <a class="service-card" href="https://booksy.com/en-us/1365850_botellos-barbershop_barber-shop_134789_san-antonio" target="_blank">
-      <div class="service-card-img-wrap"><img src="https://d2zdpiztbgorvt.cloudfront.net/region1/us/677156/service_photos/2bc0161815064ca8aaee7c9a926be4f9.jpeg" alt="Kids Cut" loading="lazy"></div>
+      <div class="service-card-img-wrap"><img src="https://d2zdpiztbgorvt.cloudfront.net/region1/us/482291/inspiration/a4408b6160be42738dd66148ef7ab4-eric-the-line-up-barber-shop-inspiration-eeffb0af83514c969bac3dce1d24e7-booksy.jpeg" alt="Kids Cut" loading="lazy"></div>
       <div class="service-card-body">
         <span class="service-num">Kids</span>
         <div class="service-name">Kids Cut</div>
