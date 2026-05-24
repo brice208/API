@@ -78,7 +78,7 @@
   .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1px; background: rgba(26,20,16,0.1); border: 1px solid rgba(26,20,16,0.1); }
 
   /* KEY FIX: card background is cream by default, not ink */
-  .service-card { background: var(--cream); padding: 0; position: relative; overflow: hidden; transition: box-shadow 0.3s; cursor: pointer; text-decoration: none; display: block; flex-direction: column; }
+  .service-card { background: var(--cream); padding: 0; position: relative; overflow: hidden; transition: box-shadow 0.3s; cursor: pointer; text-decoration: none; display: flex; flex-direction: column; }
 
   /* KEY FIX: line-height:0 kills inline whitespace gap between img and card-body */
   .service-card-img-wrap { width: 100%; aspect-ratio: 4/3; overflow: hidden; position: relative; display: block; line-height: 0; }
