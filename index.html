@@ -8,566 +8,164 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&family=Bebas+Neue&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   :root {
-    --cream: #F5F0E8;
-    --ink: #1A1410;
-    --gold: #B8922A;
-    --gold-light: #D4A843;
-    --rust: #8B3A1E;
-    --warm-gray: #8A8070;
-    --section-pad: clamp(3rem, 8vw, 7rem);
+    --cream: #F5F0E8; --ink: #1A1410; --gold: #B8922A; --gold-light: #D4A843;
+    --rust: #8B3A1E; --warm-gray: #8A8070; --section-pad: clamp(3rem, 8vw, 7rem);
   }
-
   html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--ink); color: var(--cream); overflow-x: hidden; }
 
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--ink);
-    color: var(--cream);
-    overflow-x: hidden;
-  }
-
-  /* ── NAV ── */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
     padding: 1rem 5vw;
-    background: rgba(26,20,16,0.95);
-    backdrop-filter: blur(8px);
+    background: rgba(26,20,16,0.95); backdrop-filter: blur(8px);
     border-bottom: 1px solid rgba(184,146,42,0.2);
   }
-  .nav-logo {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.4rem;
-    letter-spacing: 0.12em;
-    color: var(--gold);
-    text-decoration: none;
-  }
+  .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: 0.12em; color: var(--gold); text-decoration: none; }
   .nav-links { display: flex; gap: 2rem; list-style: none; }
-  .nav-links a {
-    color: var(--cream);
-    text-decoration: none;
-    font-size: 0.82rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    opacity: 0.75;
-    transition: opacity 0.2s, color 0.2s;
-  }
+  .nav-links a { color: var(--cream); text-decoration: none; font-size: 0.82rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.75; transition: opacity 0.2s, color 0.2s; }
   .nav-links a:hover { opacity: 1; color: var(--gold-light); }
-  .nav-book {
-    background: var(--gold);
-    color: var(--ink);
-    text-decoration: none;
-    font-size: 0.8rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 0.55rem 1.2rem;
-    transition: background 0.2s;
-    white-space: nowrap;
-  }
+  .nav-book { background: var(--gold); color: var(--ink); text-decoration: none; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.55rem 1.2rem; transition: background 0.2s; white-space: nowrap; }
   .nav-book:hover { background: var(--gold-light); }
-
-  /* Hamburger */
-  .nav-hamburger {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    cursor: pointer;
-    padding: 4px;
-    background: none;
-    border: none;
-  }
-  .nav-hamburger span {
-    display: block;
-    width: 22px;
-    height: 2px;
-    background: var(--cream);
-    transition: all 0.3s;
-  }
+  .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
+  .nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--cream); transition: all 0.3s; }
   .nav-hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
   .nav-hamburger.open span:nth-child(2) { opacity: 0; }
   .nav-hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
-
-  /* Mobile menu */
-  .mobile-menu {
-    display: none;
-    position: fixed;
-    top: 57px; left: 0; right: 0;
-    background: rgba(26,20,16,0.98);
-    border-bottom: 1px solid rgba(184,146,42,0.2);
-    padding: 1.5rem 5vw 2rem;
-    z-index: 99;
-    flex-direction: column;
-    gap: 0;
-  }
+  .mobile-menu { display: none; position: fixed; top: 57px; left: 0; right: 0; background: rgba(26,20,16,0.98); border-bottom: 1px solid rgba(184,146,42,0.2); padding: 1.5rem 5vw 2rem; z-index: 99; flex-direction: column; gap: 0; }
   .mobile-menu.open { display: flex; }
-  .mobile-menu a {
-    color: var(--cream);
-    text-decoration: none;
-    font-size: 1rem;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 1rem 0;
-    border-bottom: 1px solid rgba(184,146,42,0.1);
-    opacity: 0.8;
-  }
-  .mobile-menu a:last-child {
-    border-bottom: none;
-    background: var(--gold);
-    color: var(--ink);
-    text-align: center;
-    padding: 1rem;
-    margin-top: 1rem;
-    opacity: 1;
-  }
+  .mobile-menu a { color: var(--cream); text-decoration: none; font-size: 1rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; padding: 1rem 0; border-bottom: 1px solid rgba(184,146,42,0.1); opacity: 0.8; }
+  .mobile-menu a:last-child { border-bottom: none; background: var(--gold); color: var(--ink); text-align: center; padding: 1rem; margin-top: 1rem; opacity: 1; }
 
-  /* ── HERO ── */
-  .hero {
-    min-height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero-left {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 8rem 4vw 6rem 6vw;
-    position: relative;
-    z-index: 2;
-  }
-  .hero-eyebrow {
-    font-size: 0.75rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-  }
-  .hero-eyebrow::before {
-    content: '';
-    display: inline-block;
-    width: 2rem;
-    height: 1px;
-    background: var(--gold);
-  }
-  .hero-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(3rem, 7vw, 6.5rem);
-    font-weight: 900;
-    line-height: 0.9;
-    color: var(--cream);
-    margin-bottom: 1.5rem;
-  }
+  .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; position: relative; overflow: hidden; }
+  .hero-left { display: flex; flex-direction: column; justify-content: center; padding: 8rem 4vw 6rem 6vw; position: relative; z-index: 2; }
+  .hero-eyebrow { font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; }
+  .hero-eyebrow::before { content: ''; display: inline-block; width: 2rem; height: 1px; background: var(--gold); }
+  .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 7vw, 6.5rem); font-weight: 900; line-height: 0.9; color: var(--cream); margin-bottom: 1.5rem; }
   .hero-title em { font-style: italic; color: var(--gold); }
-  .hero-subtitle {
-    font-size: 1rem;
-    font-weight: 300;
-    line-height: 1.7;
-    color: rgba(245,240,232,0.65);
-    max-width: 30ch;
-    margin-bottom: 3rem;
-  }
+  .hero-subtitle { font-size: 1rem; font-weight: 300; line-height: 1.7; color: rgba(245,240,232,0.65); max-width: 30ch; margin-bottom: 3rem; }
   .hero-cta-row { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
-  .btn-primary {
-    background: var(--gold);
-    color: var(--ink);
-    text-decoration: none;
-    font-size: 0.85rem;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 1rem 2.2rem;
-    display: inline-block;
-    transition: background 0.2s, transform 0.15s;
-  }
+  .btn-primary { background: var(--gold); color: var(--ink); text-decoration: none; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; padding: 1rem 2.2rem; display: inline-block; transition: background 0.2s, transform 0.15s; }
   .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
-  .btn-secondary {
-    color: var(--cream);
-    text-decoration: none;
-    font-size: 0.85rem;
-    font-weight: 400;
-    letter-spacing: 0.05em;
-    opacity: 0.65;
-    border-bottom: 1px solid rgba(245,240,232,0.3);
-    padding-bottom: 2px;
-    transition: opacity 0.2s;
-  }
+  .btn-secondary { color: var(--cream); text-decoration: none; font-size: 0.85rem; font-weight: 400; letter-spacing: 0.05em; opacity: 0.65; border-bottom: 1px solid rgba(245,240,232,0.3); padding-bottom: 2px; transition: opacity 0.2s; }
   .btn-secondary:hover { opacity: 1; }
-  .hero-stats {
-    margin-top: 4rem;
-    display: flex;
-    gap: 2rem;
-    padding-top: 2rem;
-    border-top: 1px solid rgba(184,146,42,0.2);
-    flex-wrap: wrap;
-  }
-  .stat-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--gold);
-    display: block;
-  }
-  .stat-label {
-    font-size: 0.72rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--warm-gray);
-    display: block;
-    margin-top: 0.25rem;
-  }
-  .hero-right {
-    position: relative;
-    background: var(--rust);
-    overflow: hidden;
-  }
-  .hero-right::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: url('https://d2zdpiztbgorvt.cloudfront.net/region1/us/1365850/biz_photo/4f01d4553a3e4e989c8961388aa1c8-botellos-barbershop-biz-photo-6c64ff6a08f74f83a057d5b270a4fe-booksy.jpeg') center/cover no-repeat;
-    opacity: 0.55;
-  }
-  .hero-right::after {
-    content: '';
-    position: absolute; inset: 0;
-    background: linear-gradient(to right, var(--ink) 0%, transparent 30%);
-  }
-  .hero-badge {
-    position: absolute;
-    bottom: 2rem; right: 2rem;
-    z-index: 3;
-    background: var(--gold);
-    color: var(--ink);
-    width: 110px; height: 110px;
-    border-radius: 50%;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    text-align: center;
-    animation: spin-slow 20s linear infinite;
-  }
-  .hero-badge-inner {
-    position: absolute; inset: 0;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-  }
+  .hero-stats { margin-top: 4rem; display: flex; gap: 2rem; padding-top: 2rem; border-top: 1px solid rgba(184,146,42,0.2); flex-wrap: wrap; }
+  .stat-num { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: var(--gold); display: block; }
+  .stat-label { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--warm-gray); display: block; margin-top: 0.25rem; }
+  .hero-right { position: relative; background: var(--rust); overflow: hidden; }
+  .hero-right::before { content: ''; position: absolute; inset: 0; background: url('https://d2zdpiztbgorvt.cloudfront.net/region1/us/1365850/biz_photo/4f01d4553a3e4e989c8961388aa1c8-botellos-barbershop-biz-photo-6c64ff6a08f74f83a057d5b270a4fe-booksy.jpeg') center/cover no-repeat; opacity: 0.55; }
+  .hero-right::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to right, var(--ink) 0%, transparent 30%); }
+  .hero-badge { position: absolute; bottom: 2rem; right: 2rem; z-index: 3; background: var(--gold); color: var(--ink); width: 110px; height: 110px; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; animation: spin-slow 20s linear infinite; }
+  .hero-badge-inner { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
   .hero-badge svg { width: 100%; height: 100%; position: absolute; inset: 0; }
   .badge-text { font-size: 1.4rem; font-weight: 700; line-height: 1; font-family: 'Playfair Display', serif; }
   .badge-sub { font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 2px; }
   @keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
-  /* ── MARQUEE ── */
   .marquee-wrap { background: var(--gold); overflow: hidden; padding: 0.9rem 0; }
-  .marquee-track {
-    display: flex;
-    gap: 3rem;
-    white-space: nowrap;
-    animation: marquee 18s linear infinite;
-  }
-  .marquee-item {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.1rem;
-    letter-spacing: 0.15em;
-    color: var(--ink);
-    display: flex; align-items: center; gap: 1.5rem;
-  }
+  .marquee-track { display: flex; gap: 3rem; white-space: nowrap; animation: marquee 18s linear infinite; }
+  .marquee-item { font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; letter-spacing: 0.15em; color: var(--ink); display: flex; align-items: center; gap: 1.5rem; }
   .marquee-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--ink); opacity: 0.4; }
   @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-  /* ── SERVICES ── */
   .services { padding: var(--section-pad) 5vw; background: var(--cream); color: var(--ink); }
-  .section-header {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    margin-bottom: 3rem;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-  }
-  .section-eyebrow {
-    font-size: 0.72rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 0.75rem;
-  }
-  .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(1.8rem, 4vw, 3.5rem);
-    font-weight: 900;
-    line-height: 1.05;
-    color: var(--ink);
-  }
+  .section-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 3rem; gap: 1.5rem; flex-wrap: wrap; }
+  .section-eyebrow { font-size: 0.72rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 4vw, 3.5rem); font-weight: 900; line-height: 1.05; color: var(--ink); }
   .section-title em { font-style: italic; color: var(--rust); }
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1px;
-    background: rgba(26,20,16,0.1);
-    border: 1px solid rgba(26,20,16,0.1);
-  }
-  .service-card {
-    background: var(--ink);
-    padding: 0;
-    position: relative;
-    overflow: hidden;
-    transition: box-shadow 0.3s;
-    cursor: pointer;
-    text-decoration: none;
-    display: block;
-  }
-  .service-card-img-wrap {
-    width: 100%;
-    aspect-ratio: 4/3;
-    overflow: hidden;
-    position: relative;
-  }
-  .service-card-img-wrap img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.45s ease, filter 0.3s;
-    filter: grayscale(20%) brightness(0.9);
-  }
-  .service-card:hover .service-card-img-wrap img {
-    transform: scale(1.07);
-    filter: grayscale(0%) brightness(1);
-  }
-  .service-card-body {
-    padding: 1.25rem 1.25rem 1.5rem;
-    background: var(--cream);
-    transition: background 0.3s;
-  }
+
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1px; background: rgba(26,20,16,0.1); border: 1px solid rgba(26,20,16,0.1); }
+
+  /* KEY FIX: card background is cream by default, not ink */
+  .service-card { background: var(--cream); padding: 0; position: relative; overflow: hidden; transition: box-shadow 0.3s; cursor: pointer; text-decoration: none; display: block; }
+
+  /* KEY FIX: line-height:0 kills inline whitespace gap between img and card-body */
+  .service-card-img-wrap { width: 100%; aspect-ratio: 4/3; overflow: hidden; position: relative; display: block; line-height: 0; }
+  .service-card-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.45s ease, filter 0.3s; filter: grayscale(20%) brightness(0.9); }
+  .service-card:hover .service-card-img-wrap img { transform: scale(1.07); filter: grayscale(0%) brightness(1); }
+
+  .service-card-body { padding: 1.25rem 1.25rem 1.5rem; background: var(--cream); transition: background 0.3s; }
   .service-card:hover .service-card-body { background: var(--ink); }
   .service-card:hover .service-name { color: var(--cream); }
   .service-card:hover .service-price { color: var(--gold); }
   .service-card:hover .service-desc { color: rgba(245,240,232,0.55); }
-  .service-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 0.68rem;
-    font-weight: 500;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold);
-    display: block;
-    margin-bottom: 0.3rem;
-  }
-  .service-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.15rem;
-    font-weight: 700;
-    color: var(--ink);
-    margin-bottom: 0.3rem;
-    transition: color 0.3s;
-  }
-  .service-price {
-    font-size: 1.2rem;
-    font-weight: 300;
-    color: var(--rust);
-    margin-bottom: 0.5rem;
-    transition: color 0.3s;
-  }
-  .service-desc {
-    font-size: 0.82rem;
-    line-height: 1.6;
-    color: var(--warm-gray);
-    transition: color 0.3s;
-  }
 
-  /* ── ABOUT ── */
-  .about {
-    padding: var(--section-pad) 5vw;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 6vw;
-    align-items: center;
-    background: var(--ink);
-  }
+  .service-num { font-family: 'Playfair Display', serif; font-size: 0.68rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 0.3rem; }
+  .service-name { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--ink); margin-bottom: 0.3rem; transition: color 0.3s; }
+  .service-price { font-size: 1.2rem; font-weight: 300; color: var(--rust); margin-bottom: 0.5rem; transition: color 0.3s; }
+  .service-desc { font-size: 0.82rem; line-height: 1.6; color: var(--warm-gray); transition: color 0.3s; }
+
+  .about { padding: var(--section-pad) 5vw; display: grid; grid-template-columns: 1fr 1fr; gap: 6vw; align-items: center; background: var(--ink); }
   .about-visual { position: relative; aspect-ratio: 4/5; }
-  .about-img-main {
-    width: 80%;
-    aspect-ratio: 3/4;
-    object-fit: cover;
-    position: absolute;
-    top: 0; right: 0;
-    background: url('https://d2zdpiztbgorvt.cloudfront.net/region1/us/1365850/biz_photo/4f01d4553a3e4e989c8961388aa1c8-botellos-barbershop-biz-photo-6c64ff6a08f74f83a057d5b270a4fe-booksy.jpeg') center/cover;
-    filter: grayscale(20%);
-  }
-  .about-accent-box {
-    position: absolute;
-    bottom: 0; left: 0;
-    width: 55%;
-    aspect-ratio: 1;
-    background: var(--gold);
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    text-align: center;
-    padding: 1.5rem;
-  }
+  .about-img-main { width: 80%; aspect-ratio: 3/4; object-fit: cover; position: absolute; top: 0; right: 0; background: url('https://d2zdpiztbgorvt.cloudfront.net/region1/us/1365850/biz_photo/4f01d4553a3e4e989c8961388aa1c8-botellos-barbershop-biz-photo-6c64ff6a08f74f83a057d5b270a4fe-booksy.jpeg') center/cover; filter: grayscale(20%); }
+  .about-accent-box { position: absolute; bottom: 0; left: 0; width: 55%; aspect-ratio: 1; background: var(--gold); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 1.5rem; }
   .about-accent-num { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 900; color: var(--ink); line-height: 1; }
   .about-accent-label { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink); opacity: 0.7; margin-top: 0.5rem; }
   .about-text .section-eyebrow { color: var(--gold-light); }
   .about-text .section-title { color: var(--cream); }
   .about-text .section-title em { color: var(--gold); }
   .about-body { font-size: 0.95rem; font-weight: 300; line-height: 1.8; color: rgba(245,240,232,0.65); margin-top: 1.5rem; margin-bottom: 1.5rem; }
-  .about-address {
-    display: flex;
-    align-items: flex-start;
-    gap: 1rem;
-    padding: 1.25rem;
-    border: 1px solid rgba(184,146,42,0.25);
-    margin-top: 1.5rem;
-  }
+  .about-address { display: flex; align-items: flex-start; gap: 1rem; padding: 1.25rem; border: 1px solid rgba(184,146,42,0.25); margin-top: 1.5rem; }
   .about-address-icon { color: var(--gold); font-size: 1.1rem; margin-top: 2px; flex-shrink: 0; }
   .about-address-text { font-size: 0.84rem; line-height: 1.6; color: rgba(245,240,232,0.7); }
   .about-address-text strong { color: var(--cream); display: block; margin-bottom: 0.2rem; }
 
-  /* ── REVIEWS ── */
   .reviews { padding: var(--section-pad) 5vw; background: #120E0A; }
   .reviews .section-title { color: var(--cream); }
   .reviews .section-title em { color: var(--gold); }
   .stars { color: var(--gold); font-size: 1rem; letter-spacing: 0.1em; margin-bottom: 0.5rem; }
-  .reviews-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 1.25rem;
-    margin-top: 2.5rem;
-  }
-  .review-card {
-    background: rgba(245,240,232,0.04);
-    border: 1px solid rgba(184,146,42,0.15);
-    padding: 1.75rem;
-    position: relative;
-  }
-  .review-card::before {
-    content: '"';
-    font-family: 'Playfair Display', serif;
-    font-size: 6rem;
-    color: var(--gold);
-    opacity: 0.12;
-    position: absolute;
-    top: -1rem; left: 1.5rem;
-    line-height: 1;
-  }
+  .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; margin-top: 2.5rem; }
+  .review-card { background: rgba(245,240,232,0.04); border: 1px solid rgba(184,146,42,0.15); padding: 1.75rem; position: relative; }
+  .review-card::before { content: '"'; font-family: 'Playfair Display', serif; font-size: 6rem; color: var(--gold); opacity: 0.12; position: absolute; top: -1rem; left: 1.5rem; line-height: 1; }
   .review-text { font-size: 0.92rem; line-height: 1.75; color: rgba(245,240,232,0.75); margin-bottom: 1.25rem; position: relative; z-index: 1; }
   .review-author { font-size: 0.76rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); font-weight: 500; }
   .reviews-cta { text-align: center; margin-top: 2.5rem; padding-top: 2.5rem; border-top: 1px solid rgba(184,146,42,0.15); }
   .overall-rating { font-family: 'Playfair Display', serif; font-size: 5rem; font-weight: 900; color: var(--gold); line-height: 1; display: block; }
   .rating-label { font-size: 0.78rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--warm-gray); margin-top: 0.5rem; }
 
-  /* ── BOOKING CTA ── */
-  .booking-cta {
-    padding: var(--section-pad) 5vw;
-    background: var(--gold);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 2rem;
-    flex-wrap: wrap;
-  }
+  .booking-cta { padding: var(--section-pad) 5vw; background: var(--gold); display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
   .booking-cta-title { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 4vw, 3.5rem); font-weight: 900; color: var(--ink); line-height: 1.1; }
   .booking-cta-title em { font-style: italic; }
-  .btn-dark {
-    background: var(--ink);
-    color: var(--cream);
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 1.1rem 2.5rem;
-    display: inline-block;
-    white-space: nowrap;
-    transition: background 0.2s, transform 0.15s;
-    flex-shrink: 0;
-  }
+  .btn-dark { background: var(--ink); color: var(--cream); text-decoration: none; font-size: 0.9rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; padding: 1.1rem 2.5rem; display: inline-block; white-space: nowrap; transition: background 0.2s, transform 0.15s; flex-shrink: 0; }
   .btn-dark:hover { background: var(--rust); transform: translateY(-1px); }
 
-  /* ── FOOTER ── */
-  footer {
-    background: var(--ink);
-    border-top: 1px solid rgba(184,146,42,0.15);
-    padding: 2.5rem 5vw;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-  }
+  footer { background: var(--ink); border-top: 1px solid rgba(184,146,42,0.15); padding: 2.5rem 5vw; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; }
   .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 0.12em; color: var(--gold); }
   .footer-text { font-size: 0.78rem; color: var(--warm-gray); }
   .footer-links { display: flex; gap: 1.5rem; }
   .footer-links a { font-size: 0.75rem; color: var(--warm-gray); text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
   .footer-links a:hover { color: var(--gold-light); }
 
-  /* ── SCROLL ANIMATIONS ── */
   .fade-up { opacity: 0; transform: translateY(2rem); transition: opacity 0.7s ease, transform 0.7s ease; }
   .fade-up.visible { opacity: 1; transform: translateY(0); }
 
-  /* ── MOBILE ── */
   @media (max-width: 768px) {
-    /* Nav */
-    .nav-links { display: none; }
-    .nav-book { display: none; }
-    .nav-hamburger { display: flex; }
-
-    /* Hero: stack vertically, photo on top */
-    .hero {
-      grid-template-columns: 1fr;
-      grid-template-rows: 55vw auto;
-      min-height: auto;
-    }
+    .nav-links { display: none; } .nav-book { display: none; } .nav-hamburger { display: flex; }
+    .hero { grid-template-columns: 1fr; grid-template-rows: 55vw auto; min-height: auto; }
     .hero-right { order: -1; min-height: 55vw; }
     .hero-right::after { background: linear-gradient(to bottom, rgba(26,20,16,0.2) 0%, rgba(26,20,16,0.5) 100%); }
-    .hero-left {
-      padding: 2.5rem 6vw 3.5rem;
-      justify-content: flex-start;
-    }
+    .hero-left { padding: 2.5rem 6vw 3.5rem; justify-content: flex-start; }
     .hero-eyebrow { margin-bottom: 1rem; }
     .hero-title { font-size: clamp(2.8rem, 11vw, 4rem); margin-bottom: 1rem; }
     .hero-subtitle { font-size: 0.95rem; margin-bottom: 2rem; max-width: 100%; }
     .hero-stats { margin-top: 2.5rem; gap: 1.5rem; }
     .hero-badge { width: 80px; height: 80px; bottom: 1rem; right: 1rem; }
     .badge-text { font-size: 1.1rem; }
-
-    /* Services: 2 cols on mobile */
     .services-grid { grid-template-columns: 1fr 1fr; }
     .service-card-body { padding: 1rem; }
-    .service-name { font-size: 0.95rem; }
-    .service-price { font-size: 1rem; }
-    .service-desc { font-size: 0.75rem; }
-
-    /* Section headers: stack */
+    .service-name { font-size: 0.95rem; } .service-price { font-size: 1rem; } .service-desc { font-size: 0.75rem; }
     .section-header { flex-direction: column; align-items: flex-start; gap: 1.25rem; margin-bottom: 2rem; }
-
-    /* About: stack */
     .about { grid-template-columns: 1fr; gap: 2.5rem; }
-    .about-visual { aspect-ratio: 3/2; max-height: none; }
-    .about-img-main { width: 75%; }
-    .about-accent-num { font-size: 2rem; }
-
-    /* Reviews: single col */
+    .about-visual { aspect-ratio: 3/2; } .about-img-main { width: 75%; } .about-accent-num { font-size: 2rem; }
     .reviews-grid { grid-template-columns: 1fr; }
     .reviews .section-header { flex-direction: column; align-items: flex-start; }
     .overall-rating { font-size: 3.5rem; }
-
-    /* Booking CTA */
     .booking-cta { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
     .btn-dark { width: 100%; text-align: center; }
-
-    /* Footer */
     footer { flex-direction: column; align-items: flex-start; gap: 1rem; }
     .footer-links { flex-wrap: wrap; gap: 1rem; }
   }
-
   @media (max-width: 420px) {
     .services-grid { grid-template-columns: 1fr; }
     .hero-title { font-size: clamp(2.4rem, 12vw, 3rem); }
@@ -577,8 +175,6 @@
 </style>
 </head>
 <body>
-
-<!-- NAV -->
 <nav>
   <a href="#" class="nav-logo">Botello's</a>
   <ul class="nav-links">
@@ -591,16 +187,12 @@
     <span></span><span></span><span></span>
   </button>
 </nav>
-
-<!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobile-menu">
   <a href="#services" onclick="closeMenu()">Services</a>
   <a href="#about" onclick="closeMenu()">About</a>
   <a href="#reviews" onclick="closeMenu()">Reviews</a>
   <a href="https://booksy.com/en-us/1365850_botellos-barbershop_barber-shop_134789_san-antonio" target="_blank">Book Now</a>
 </div>
-
-<!-- HERO -->
 <section class="hero">
   <div class="hero-left">
     <p class="hero-eyebrow">San Antonio, TX</p>
@@ -611,18 +203,9 @@
       <a href="#services" class="btn-secondary">See Services</a>
     </div>
     <div class="hero-stats">
-      <div>
-        <span class="stat-num">5.0</span>
-        <span class="stat-label">★ Rating</span>
-      </div>
-      <div>
-        <span class="stat-num">371</span>
-        <span class="stat-label">Reviews</span>
-      </div>
-      <div>
-        <span class="stat-num">612</span>
-        <span class="stat-label">McCullough Ave</span>
-      </div>
+      <div><span class="stat-num">5.0</span><span class="stat-label">★ Rating</span></div>
+      <div><span class="stat-num">371</span><span class="stat-label">Reviews</span></div>
+      <div><span class="stat-num">612</span><span class="stat-label">McCullough Ave</span></div>
     </div>
   </div>
   <div class="hero-right">
@@ -633,15 +216,10 @@
           <textPath href="#circle-text-path">⭑ TOP RATED IN SAN ANTONIO ⭑ BOOKSY ⭑ </textPath>
         </text>
       </svg>
-      <div class="hero-badge-inner">
-        <span class="badge-text">5.0</span>
-        <span class="badge-sub">Stars</span>
-      </div>
+      <div class="hero-badge-inner"><span class="badge-text">5.0</span><span class="badge-sub">Stars</span></div>
     </div>
   </div>
 </section>
-
-<!-- MARQUEE -->
 <div class="marquee-wrap" aria-hidden="true">
   <div class="marquee-track">
     <span class="marquee-item">Haircuts<span class="marquee-dot"></span></span>
@@ -660,8 +238,6 @@
     <span class="marquee-item">Walk-ins Welcome<span class="marquee-dot"></span></span>
   </div>
 </div>
-
-<!-- SERVICES -->
 <section class="services" id="services">
   <div class="section-header fade-up">
     <div>
@@ -673,62 +249,30 @@
   <div class="services-grid fade-up">
     <a class="service-card" href="https://booksy.com/en-us/1365850_botellos-barbershop_barber-shop_134789_san-antonio" target="_blank">
       <div class="service-card-img-wrap"><img src="https://d2zdpiztbgorvt.cloudfront.net/region1/us/482291/inspiration/62a5db5ba52f4a10930a54ba3072f3-eric-botellos-barbershop-inspiration-5e5de472d5d441e18eed7ad81c03d8-booksy.jpeg" alt="Haircut" loading="lazy"></div>
-      <div class="service-card-body">
-        <span class="service-num">Haircut</span>
-        <div class="service-name">Classic Cut</div>
-        <div class="service-price">Starting at $40</div>
-        <div class="service-desc">Classic and modern cuts tailored to your style. Scissor or clipper — your call.</div>
-      </div>
+      <div class="service-card-body"><span class="service-num">Haircut</span><div class="service-name">Classic Cut</div><div class="service-price">Starting at $40</div><div class="service-desc">Classic and modern cuts tailored to your style. Scissor or clipper — your call.</div></div>
     </a>
     <a class="service-card" href="https://booksy.com/en-us/1365850_botellos-barbershop_barber-shop_134789_san-antonio" target="_blank">
       <div class="service-card-img-wrap"><img src="https://d2zdpiztbgorvt.cloudfront.net/region1/us/677156/biz_photo/31a71f24ea7c43b2abd41df00280e4-ruben-botellosbarbershop-biz-photo-58bb8bd7cda64af290dea89b6f2d41-booksy.jpeg" alt="Fade" loading="lazy"></div>
-      <div class="service-card-body">
-        <span class="service-num">Fade</span>
-        <div class="service-name">Skin Fade</div>
-        <div class="service-price">Starting at $40</div>
-        <div class="service-desc">Low, mid, or high — clean transitions and sharp lines, every time.</div>
-      </div>
+      <div class="service-card-body"><span class="service-num">Fade</span><div class="service-name">Skin Fade</div><div class="service-price">Starting at $40</div><div class="service-desc">Low, mid, or high — clean transitions and sharp lines, every time.</div></div>
     </a>
     <a class="service-card" href="https://booksy.com/en-us/1365850_botellos-barbershop_barber-shop_134789_san-antonio" target="_blank">
       <div class="service-card-img-wrap"><img src="https://d2zdpiztbgorvt.cloudfront.net/region1/us/677156/biz_photo/72e75db3865144059903de937e0d41-ruben-botellosbarbershop-biz-photo-1e2ab3e3840b47ed83a7b857dd44a9-booksy.jpeg" alt="Beard Trim" loading="lazy"></div>
-      <div class="service-card-body">
-        <span class="service-num">Beard</span>
-        <div class="service-name">Beard Trim</div>
-        <div class="service-price">Starting at $20</div>
-        <div class="service-desc">Shape, edge, and clean up your beard for a polished, defined look.</div>
-      </div>
+      <div class="service-card-body"><span class="service-num">Beard</span><div class="service-name">Beard Trim</div><div class="service-price">Starting at $20</div><div class="service-desc">Shape, edge, and clean up your beard for a polished, defined look.</div></div>
     </a>
     <a class="service-card" href="https://booksy.com/en-us/1365850_botellos-barbershop_barber-shop_134789_san-antonio" target="_blank">
       <div class="service-card-img-wrap"><img src="https://d2zdpiztbgorvt.cloudfront.net/region1/us/677156/biz_photo/e91f997226c846749a4e95b75a5bde-ruben-botellosbarbershop-biz-photo-c6feaa2e8fb445d495d3bbf7ff9b4d-booksy.jpeg" alt="Lineup" loading="lazy"></div>
-      <div class="service-card-body">
-        <span class="service-num">Lineup</span>
-        <div class="service-name">Edge Lineup</div>
-        <div class="service-price">Starting at $15</div>
-        <div class="service-desc">Crisp edges, hairline shaping, and a razor-clean finish.</div>
-      </div>
+      <div class="service-card-body"><span class="service-num">Lineup</span><div class="service-name">Edge Lineup</div><div class="service-price">Starting at $15</div><div class="service-desc">Crisp edges, hairline shaping, and a razor-clean finish.</div></div>
     </a>
     <a class="service-card" href="https://booksy.com/en-us/1365850_botellos-barbershop_barber-shop_134789_san-antonio" target="_blank">
       <div class="service-card-img-wrap"><img src="https://d2zdpiztbgorvt.cloudfront.net/region1/us/482291/inspiration/247161c84e1941bca3892eae973f5b-botellos-barbershop-inspiration-610a2467739f43e3af9730fef89d5e-booksy.jpeg" alt="Cut and Beard" loading="lazy"></div>
-      <div class="service-card-body">
-        <span class="service-num">Combo</span>
-        <div class="service-name">Cut + Beard</div>
-        <div class="service-price">Starting at $50</div>
-        <div class="service-desc">Full haircut paired with a beard trim — the complete refresh.</div>
-      </div>
+      <div class="service-card-body"><span class="service-num">Combo</span><div class="service-name">Cut + Beard</div><div class="service-price">Starting at $50</div><div class="service-desc">Full haircut paired with a beard trim — the complete refresh.</div></div>
     </a>
     <a class="service-card" href="https://booksy.com/en-us/1365850_botellos-barbershop_barber-shop_134789_san-antonio" target="_blank">
       <div class="service-card-img-wrap"><img src="https://d2zdpiztbgorvt.cloudfront.net/region1/us/482291/inspiration/a4408b6160be42738dd66148ef7ab4-eric-the-line-up-barber-shop-inspiration-eeffb0af83514c969bac3dce1d24e7-booksy.jpeg" alt="Kids Cut" loading="lazy"></div>
-      <div class="service-card-body">
-        <span class="service-num">Kids</span>
-        <div class="service-name">Kids Cut</div>
-        <div class="service-price">Starting at $35</div>
-        <div class="service-desc">Patient, friendly cuts for the little ones. Family first, always.</div>
-      </div>
+      <div class="service-card-body"><span class="service-num">Kids</span><div class="service-name">Kids Cut</div><div class="service-price">Starting at $35</div><div class="service-desc">Patient, friendly cuts for the little ones. Family first, always.</div></div>
     </a>
   </div>
 </section>
-
-<!-- ABOUT -->
 <section class="about" id="about">
   <div class="about-visual fade-up">
     <div class="about-img-main"></div>
@@ -740,67 +284,34 @@
   <div class="about-text fade-up">
     <p class="section-eyebrow">Our Story</p>
     <h2 class="section-title">More Than <em>Just a Cut</em></h2>
-    <p class="about-body">
-      Botello's Barbershop is a cornerstone of the San Antonio community. We believe a great haircut is more than technique — it's the experience, the conversation, and the confidence you carry when you walk out the door. Our barbers bring skill, care, and respect to every client that sits in the chair.
-    </p>
-    <p class="about-body">
-      Whether you're a regular or stepping in for the first time, you're family here. Come as you are, leave looking your best.
-    </p>
+    <p class="about-body">Botello's Barbershop is a cornerstone of the San Antonio community. We believe a great haircut is more than technique — it's the experience, the conversation, and the confidence you carry when you walk out the door. Our barbers bring skill, care, and respect to every client that sits in the chair.</p>
+    <p class="about-body">Whether you're a regular or stepping in for the first time, you're family here. Come as you are, leave looking your best.</p>
     <div class="about-address">
       <div class="about-address-icon">📍</div>
-      <div class="about-address-text">
-        <strong>Botello's Barbershop</strong>
-        612 McCullough Ave, San Antonio, TX 78215<br>
-        Book online via Booksy — open 24/7 for scheduling
-      </div>
+      <div class="about-address-text"><strong>Botello's Barbershop</strong>612 McCullough Ave, San Antonio, TX 78215<br>Book online via Booksy — open 24/7 for scheduling</div>
     </div>
-    <div style="margin-top: 2rem;">
-      <a href="https://booksy.com/en-us/1365850_botellos-barbershop_barber-shop_134789_san-antonio" target="_blank" class="btn-primary">Reserve Your Spot</a>
-    </div>
+    <div style="margin-top: 2rem;"><a href="https://booksy.com/en-us/1365850_botellos-barbershop_barber-shop_134789_san-antonio" target="_blank" class="btn-primary">Reserve Your Spot</a></div>
   </div>
 </section>
-
-<!-- REVIEWS -->
 <section class="reviews" id="reviews">
   <div class="section-header fade-up">
     <div>
       <p class="section-eyebrow">What Clients Say</p>
       <h2 class="section-title">The <em>Reviews</em><br>Speak for Themselves</h2>
     </div>
-    <div>
-      <span class="overall-rating">5.0</span>
-      <p class="rating-label">371 reviews on Booksy</p>
-    </div>
+    <div><span class="overall-rating">5.0</span><p class="rating-label">371 reviews on Booksy</p></div>
   </div>
   <div class="reviews-grid fade-up">
-    <div class="review-card">
-      <div class="stars">★★★★★</div>
-      <p class="review-text">Best barbershop in San Antonio, hands down. I've been coming here for years and the consistency is unmatched. My barber knows exactly what I want every time.</p>
-      <div class="review-author">— Loyal Customer</div>
-    </div>
-    <div class="review-card">
-      <div class="stars">★★★★★</div>
-      <p class="review-text">Clean shop, great vibes, and an amazing fade. Worth every penny. I drove across town and I'll keep driving across town — it's that good.</p>
-      <div class="review-author">— Booksy Review</div>
-    </div>
-    <div class="review-card">
-      <div class="stars">★★★★★</div>
-      <p class="review-text">Brought my son in for his first real barbershop experience. They were so patient and kind with him. We'll definitely be back — now it's our spot.</p>
-      <div class="review-author">— Happy Dad</div>
-    </div>
+    <div class="review-card"><div class="stars">★★★★★</div><p class="review-text">Best barbershop in San Antonio, hands down. I've been coming here for years and the consistency is unmatched. My barber knows exactly what I want every time.</p><div class="review-author">— Loyal Customer</div></div>
+    <div class="review-card"><div class="stars">★★★★★</div><p class="review-text">Clean shop, great vibes, and an amazing fade. Worth every penny. I drove across town and I'll keep driving across town — it's that good.</p><div class="review-author">— Booksy Review</div></div>
+    <div class="review-card"><div class="stars">★★★★★</div><p class="review-text">Brought my son in for his first real barbershop experience. They were so patient and kind with him. We'll definitely be back — now it's our spot.</p><div class="review-author">— Happy Dad</div></div>
   </div>
-  <div class="reviews-cta fade-up">
-    <a href="https://booksy.com/en-us/1365850_botellos-barbershop_barber-shop_134789_san-antonio" target="_blank" class="btn-primary">Read All 371 Reviews</a>
-  </div>
+  <div class="reviews-cta fade-up"><a href="https://booksy.com/en-us/1365850_botellos-barbershop_barber-shop_134789_san-antonio" target="_blank" class="btn-primary">Read All 371 Reviews</a></div>
 </section>
-
-<!-- BOOKING CTA -->
 <section class="booking-cta">
   <h2 class="booking-cta-title">Ready for your<br><em>best cut yet?</em></h2>
   <a href="https://booksy.com/en-us/1365850_botellos-barbershop_barber-shop_134789_san-antonio" target="_blank" class="btn-dark">Book on Booksy →</a>
 </section>
-
-<!-- FOOTER -->
 <footer>
   <div class="footer-logo">Botello's Barbershop</div>
   <p class="footer-text">612 McCullough Ave · San Antonio, TX 78215</p>
@@ -810,31 +321,16 @@
     <a href="#reviews">Reviews</a>
   </div>
 </footer>
-
 <script>
-  // Scroll animations
   const obs = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
-    });
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
   }, { threshold: 0.1 });
   document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
-
-  // Hamburger menu
   const hamburger = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobile-menu');
-  hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('open');
-    mobileMenu.classList.toggle('open');
-  });
-  function closeMenu() {
-    hamburger.classList.remove('open');
-    mobileMenu.classList.remove('open');
-  }
-  // Close on outside click
-  document.addEventListener('click', (e) => {
-    if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) closeMenu();
-  });
+  hamburger.addEventListener('click', () => { hamburger.classList.toggle('open'); mobileMenu.classList.toggle('open'); });
+  function closeMenu() { hamburger.classList.remove('open'); mobileMenu.classList.remove('open'); }
+  document.addEventListener('click', (e) => { if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) closeMenu(); });
 </script>
 </body>
 </html>
